@@ -893,6 +893,7 @@ public function list(int $inquiryId, bool $wRoles = true): array
  */
 public function getSupportByInquiryId(int $inquiryId): array
 {
+    $this->inquiryMapper->get($inquiryId, withRoles: true)->request(Inquiry::PERMISSION_INQUIRY_VIEW);
     return $this->hideOthersSupports($this->supportMapper->findByInquiryId($inquiryId), $inquiryId);
 }
 
